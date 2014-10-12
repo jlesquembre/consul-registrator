@@ -1,0 +1,27 @@
+[Unit]
+Description=Consul container on interface %I
+Wants=docker.service
+
+After=docker.service
+#After=docker.service sys-subsystem-net-devices-%i.device
+
+#BindsTo=sys-subsystem-net-devices-%i.device
+
+#PartOf=netctl-ifplugd@%I.service
+#PartOf=netctl@%I.service
+#PartOf=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/@project@/consul.sh start %I
+ExecStop=/usr/lib/@project@/consul.sh stop %I
+
+
+
+
+[Install]
+WantedBy=multi-user.target
+
+#EnvironmentFile=-/run/sysconfig/mdadm
+#ExecStartPre=-/usr/lib/systemd/scripts/mdadm_env.sh

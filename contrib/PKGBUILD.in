@@ -1,0 +1,19 @@
+# $Id$
+# Maintainer: José Luis Lafuente <jl@lafuente.me>
+
+pkgname=@pkgname@
+pkgver=@pkgver@
+pkgrel=1
+pkgdesc='Config file to run consul as DNS'
+arch=('any')
+license=('GPL2')
+depends=('openresolv' 'docker')
+install=$pkgname.install
+source=("@pkgname@-@pkgver@.tgz")
+md5sums=('@md5sum@')
+
+package() {
+  make DESTDIR="${pkgdir}" install
+}
+
+# vim:set ts=2 sw=2 et:

@@ -1,0 +1,8 @@
+post_install() {
+    systemctl daemon-reload
+    systemctl restart docker
+}
+
+post_upgrade() {
+    post_install
+}
